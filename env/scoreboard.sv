@@ -47,8 +47,6 @@ class scoreboard extends uvm_scoreboard;
       bins large_packet = {[41 : 63]};
     }
 
-    ADD_X_PAYLOAD : cross ADDR, PAYLOAD_LENGTH;
-
   endgroup
 
   function new(string name = "scoreboard", uvm_component parent);
