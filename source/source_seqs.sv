@@ -44,6 +44,8 @@ class short_seqs extends source_seqs;
       header[1:0] == add;
     });
 
+    req.parity = 0;
+
     finish_item(req);
     `uvm_info("SHORT_SEQS", "finish_item is unblocked", UVM_LOW)
 
@@ -97,26 +99,4 @@ class large_seqs extends source_seqs;
 
 endclass
 
-class error_seqs extends source_seqs;
 
-  `uvm_object_utils(error_seqs)
-
-  function new(string name = "error_seqs");
-    super.new(name);
-  endfunction : new
-
-  task body();
-    super.body();
-    req = source_trans::type_id::create("req");
-    start_item(req);
-    `uvm_info("error_seqs", "start_item is unblocked", UVM_LOW)
-    assert (req.randomize() with {
-      payload.size inside {[41 : 63]};
-      header[1:0] == add;
-    });
-    req.parity = 0;
-    finish_item(req);
-    `uvm_info("error_seqs", "finish_item is unblocked", UVM_LOW)
-  endtask : body
-
-endclass
