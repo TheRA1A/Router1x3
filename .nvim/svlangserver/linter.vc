@@ -1,0 +1,11 @@
+-v /home/raja/Desktop/MAVEN/UVM/ROUTER/top/router_pkg.sv
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/dest
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/env
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/rtl
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/source
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/top
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/dest
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/env
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/rtl
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/source
++incdir+/home/raja/Desktop/MAVEN/UVM/ROUTER/top

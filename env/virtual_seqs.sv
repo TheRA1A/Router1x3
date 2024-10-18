@@ -129,3 +129,26 @@ class large_virtual_seqs extends virtual_seqs;
 
 endclass
 
+class large_less_virtual extends virtual_seqs;
+
+  `uvm_object_utils(large_less_virtual)
+
+  function new(string name = "large_less_virtual");
+    super.new(name);
+  endfunction
+
+  task body();
+
+    super.body();
+
+    s_large_seqs_h = large_seqs::type_id::create("s_large_seqs_h");
+    d_less_delay_seqs_h = less_delay_seqs::type_id::create("d_less_delay_seqs_h");
+
+    fork
+      s_large_seqs_h.start(s_seqr_h[0]);
+      d_less_delay_seqs_h.start(d_seqr_h[add]);
+    join
+
+  endtask
+
+endclass

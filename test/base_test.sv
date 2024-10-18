@@ -258,3 +258,44 @@ endtask : run_phase
 
 
 
+class large_less extends base_test;
+
+  `uvm_component_utils(large_less)
+
+  large_seqs s_seqs_h;
+  large_delay_seqs d_seqs_h;
+  large_less_virtual v_seqs_h;
+
+  function new(string name = "large_less", uvm_component parent);
+    super.new(name, parent);
+  endfunction : new
+
+  extern task run_phase(uvm_phase phase);
+
+endclass
+
+task large_less::run_phase(uvm_phase phase);
+
+  super.run_phase(phase);
+
+  phase.raise_objection(this);
+
+  // s_seqs_h = large_seqs::type_id::create("s_seqs_h");
+  // d_seqs_h = large_delay_seqs::type_id::create("d_seqs_h");
+
+  // fork
+  //   s_seqs_h.start(env_h.s_agt_top_h.agt_h[0].seqr_h);
+  //   d_seqs_h.start(env_h.d_agt_top_h.agt_h[super.add].seqr_h);
+  // join
+
+  v_seqs_h = large_less_virtual::type_id::create("v_seqs_h");
+
+  v_seqs_h.start(env_h.v_seqr_h);
+
+  `uvm_info("large_less", "This is run_phase in large_less", UVM_LOW)
+
+  phase.drop_objection(this);
+
+endtask : run_phase
+
+

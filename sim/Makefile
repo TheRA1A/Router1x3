@@ -19,6 +19,7 @@ VSIMBATCH1= -c -do  " log -r /* ;coverage save -onexit mem_cov1;run -all; exit"
 VSIMBATCH2= -c -do  " log -r /* ;coverage save -onexit mem_cov2;run -all; exit"
 VSIMBATCH3= -c -do  " log -r /* ;coverage save -onexit mem_cov3;run -all; exit"
 VSIMBATCH4= -c -do  " log -r /* ;coverage save -onexit mem_cov4;run -all; exit"
+VSIMBATCH5= -c -do  " log -r /* ;coverage save -onexit mem_cov5;run -all; exit"
 
 
 help:
@@ -30,10 +31,12 @@ help:
 	@echo "! run_test1	=>  clean, compile & run the simulation for ram_ten_addr_test in batch mode.			!" 
 	@echo "! run_test2	=>  clean, compile & run the simulation for ram_odd_addr_test in batch mode.			!"
 	@echo "! run_test3	=>  clean, compile & run the simulation for ram_even_addr_test in batch mode.			!" 
+  
 	@echo "! view_wave1 =>  To view the waveform of ram_signle_addr_test	    						!" 
 	@echo "! view_wave2 =>  To view the waveform of ram_ten_addr_test	    						!" 
 	@echo "! view_wave3 =>  To view the waveform of ram_odd_addr_test 	  						!" 
 	@echo "! view_wave4 =>  To view the waveform of ram_even_addr_test    							!" 
+  
 	@echo "! regress    =>  clean, compile and run all testcases in batch mode.		    				!"
 	@echo "! report     =>  To merge coverage reports for all testcases and  convert to html format.			!"
 	@echo "! cov        =>  To open merged coverage report in html format.							!"
@@ -45,10 +48,12 @@ run_test   : run_test_$(SIMULATOR)
 run_test1  : run_test1_$(SIMULATOR)
 run_test2  : run_test2_$(SIMULATOR)
 run_test3  : run_test3_$(SIMULATOR)
+run_test4  : run_test4_$(SIMULATOR)
 view_wave1 : view_wave1_$(SIMULATOR)
 view_wave2 : view_wave2_$(SIMULATOR)
 view_wave3 : view_wave3_$(SIMULATOR)
 view_wave4 : view_wave4_$(SIMULATOR)
+view_wave5 : view_wave5_$(SIMULATOR)
 regress    : regress_$(SIMULATOR)
 report     : report_$(SIMULATOR)
 cov        : cov_$(SIMULATOR)
@@ -75,7 +80,11 @@ run_test2_Questa:sv_cmp
 run_test3_Questa:sv_cmp
 	vsim -cvgperinstance $(VSIMOPT) $(VSIMCOV) $(VSIMBATCH4)  -wlf wave_file4.wlf -l test4.log  -sv_seed random  work.top +UVM_TESTNAME=large_test
 	vcover report  -cvg  -details -nocompactcrossbins -codeAll -assert -directive -html mem_cov4
-	
+ 
+run_test4_Questa:sv_cmp
+	vsim -cvgperinstance $(VSIMOPT) $(VSIMCOV) $(VSIMBATCH5)  -wlf wave_file5.wlf -l test5.log  -sv_seed random  work.top +UVM_TESTNAME=large_less
+	vcover report  -cvg  -details -nocompactcrossbins -codeAll -assert -directive -html mem_cov5
+ 
 view_wave1_Questa:
 	vsim -view wave_file1.wlf
 	
@@ -87,12 +96,15 @@ view_wave3_Questa:
 	
 view_wave4_Questa:
 	vsim -view wave_file4.wlf
+ 
+view_wave5_Questa:
+	vsim -view wave_file5.wlf
 
 report_Questa:
-	vcover merge mem_cov mem_cov1 mem_cov2 mem_cov3 mem_cov4
+	vcover merge mem_cov mem_cov1 mem_cov2 mem_cov3 mem_cov4 mem_cov5
 	vcover report -cvg -details -nocompactcrossbins -codeAll -assert -directive -html mem_cov
 
-regress_Questa: clean_Questa run_test_Questa run_test1_Questa run_test2_Questa run_test3_Questa report_Questa 
+regress_Questa: clean_Questa run_test_Questa run_test1_Questa run_test2_Questa run_test3_Questa run_test4_Questa report_Questa 
 
 cov_Questa:
 	firefox covhtmlreport/index.html&

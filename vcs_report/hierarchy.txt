@@ -1,0 +1,8 @@
+Design Hierarchy
+
+Warning: a full compile-time design hierarchy was not found in the database directories specified.  Only the hierarchy that could be inferred from the assertions information is shown.  The full hierarchy can be displayed only when a complete compile-time database is given.
+
+----------------
+SCORE  ASSERT     
+ 55.56  55.56 top 
+
