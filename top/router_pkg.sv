@@ -28,7 +28,7 @@ package router_pkg;
 
   `include "virtual_sequencer.sv"
   `include "virtual_seqs.sv"
-	`include "scoreboard.sv"
+  `include "scoreboard.sv"
 
   `include "env.sv"
 
