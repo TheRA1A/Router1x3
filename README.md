@@ -124,3 +124,7 @@ Coverage reports are available in the `report/` directory:
 7. WAIT_TILL_EMPTY: FIFO empty wait
 8. CHECK_PARITY_ERROR: Error detection
 
+## Contributors
+This project was developed by:
+- [TheRA1A](https://github.com/TheRA1A)
+- [Kassa Keerthi](https://github.com/kassakeerthi)
